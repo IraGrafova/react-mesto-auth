@@ -1,9 +1,7 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-function InfoTooltip({ isOpen, onClose, name, isTooltipPopup, }) {
-
-  useEffect(() => {}, [isOpen]);
+function InfoTooltip({ isOpen, onClose, name, isTooltipPopup }) {
 
   return (
     <div className={`popup ${isOpen ? "popup_is-opened" : ""}`}>
@@ -14,8 +12,12 @@ function InfoTooltip({ isOpen, onClose, name, isTooltipPopup, }) {
           type="button"
         ></button>
         <form className="card-form" name={name} id={`${name}-form`}>
-          <img src={isTooltipPopup.img} />
-          <h2>{isTooltipPopup.text}</h2>
+          <img
+            className="card-form__img"
+            src={isTooltipPopup.img}
+            alt={isTooltipPopup.text}
+          />
+          <h2 className="card-form__info-title">{isTooltipPopup.text}</h2>
         </form>
       </div>
     </div>

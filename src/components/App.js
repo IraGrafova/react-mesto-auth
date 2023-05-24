@@ -17,11 +17,10 @@ import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
 import * as Auth from "../utils/Auth";
 
-import Error from '../images/error.svg';
-import Success from '../images/tick.svg';
+import Error from "../images/error.svg";
+import Success from "../images/tick.svg";
 
 function App() {
-
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = React.useState("");
@@ -185,23 +184,25 @@ function App() {
   }
 
   const [isTooltipPopup, setIsTooltipPopup] = React.useState({
-    img: '',
-    text: ''
-   })
+    img: "",
+    text: "",
+  });
 
-  function handleError () {
+  function handleError() {
+    console.log("error");
     setIsTooltipPopup({
       img: Error,
       text: `Что-то пошло не так!
-            Попробуйте ещё раз.`
-    })
+            Попробуйте ещё раз.`,
+    });
   }
 
   function handleSuccess() {
+    console.log("success");
     setIsTooltipPopup({
       img: Success,
-      text: `Вы успешно зарегистрировались!`
-    })
+      text: `Вы успешно зарегистрировались!`,
+    });
   }
 
   return (
@@ -240,7 +241,13 @@ function App() {
 
             <Route
               path="/sign-up"
-              element={<Register handleRegister={handleRegister} handleSuccess={handleSuccess} handleError={handleError}/>}
+              element={
+                <Register
+                  handleRegister={handleRegister}
+                  handleSuccess={handleSuccess}
+                  handleError={handleError}
+                />
+              }
             />
             <Route
               path="/sign-in"
@@ -264,7 +271,12 @@ function App() {
             onClose={closeAllPopups}
             onAddPlace={handleAddPlaceSubmit}
           />
-          <InfoTooltip name="info" isTooltipPopup={isTooltipPopup} onClose={closeAllPopups} isOpen={isInfoTooltipOpen}/>
+          <InfoTooltip
+            name="info"
+            isTooltipPopup={isTooltipPopup}
+            onClose={closeAllPopups}
+            isOpen={isInfoTooltipOpen}
+          />
           <PopupWithForm
             title="Вы уверены?"
             name="delete-card"

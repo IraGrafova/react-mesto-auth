@@ -3,8 +3,6 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import * as Auth from "../utils/Auth";
 
-
-
 function Register({ handleRegister, handleError, handleSuccess }) {
   const [formValue, setFormValue] = useState({
     email: "",
@@ -28,12 +26,13 @@ function Register({ handleRegister, handleError, handleSuccess }) {
     Auth.register({ email, password })
       .then(() => {
         handleRegister();
-        handleSuccess ();
+        handleSuccess();
         navigate("/sign-in");
       })
       .catch(() => {
         handleRegister();
-        handleError ()});
+        handleError();
+      });
   }
 
   return (
