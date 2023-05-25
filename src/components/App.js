@@ -99,29 +99,33 @@ function App() {
   }
 
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setCurrentUser(data);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }, []);
+    if (loggedIn) {
+      api
+        .getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  }, [loggedIn]);
 
   React.useEffect(() => {
-    api
-      .getAllCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }, []);
+    if (loggedIn) {
+      api
+        .getAllCards()
+        .then((data) => {
+          setCards(data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  }, [loggedIn]);
 
   React.useEffect(() => {
-    tokenCheck();
+    checkToken();
   }, []);
 
   function handleUpdateUser(updateData) {
@@ -165,7 +169,7 @@ function App() {
     setUserEmail(userEmail);
   }
 
-  function tokenCheck() {
+  function checkToken() {
     const token = localStorage.getItem("token");
     if (token) {
       Auth.jwt(token)
